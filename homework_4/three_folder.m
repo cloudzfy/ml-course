@@ -1,0 +1,11 @@
+function [train_data, train_label, valid_data, valid_label] = three_folder(data, label, t)
+    N = size(data, 1);
+    folder = round(linspace(1, N + 1, 4));
+    ind_start = folder(t);
+    ind_end = folder(t + 1) - 1;
+    valid_data = data(ind_start : ind_end, :);
+    train_data = data;
+    train_data(ind_start : ind_end, :) = [];
+    valid_label = label(ind_start : ind_end, :);
+    train_label = label;
+    train_label(ind_start : ind_end, :) = [];

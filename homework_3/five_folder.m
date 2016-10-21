@@ -1,0 +1,10 @@
+function [train_data, train_label, valid_data, valid_label] = five_folder(data, label, t)
+    N = size(data, 1);
+    ind_start = 1 + (t - 1) * round(N / 5);
+    ind_end = min(t * round(N / 5), N);
+    valid_data = data(ind_start : ind_end, :);
+    train_data = data;
+    train_data(ind_start : ind_end, :) = [];
+    valid_label = label(ind_start : ind_end, :);
+    train_label = label;
+    train_label(ind_start : ind_end, :) = [];
